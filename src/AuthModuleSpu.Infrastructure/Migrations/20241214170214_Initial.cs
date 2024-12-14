@@ -14,9 +14,9 @@ namespace AuthModuleSpu.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("CREATE attachment_type status AS ENUM ('INPUT', 'OUTPUT');");
+            migrationBuilder.Sql("CREATE TYPE attachment_type AS ENUM ('INPUT', 'OUTPUT');");
             
-            migrationBuilder.Sql("CREATE user_to_task_type status AS ENUM ('CREATOR', 'COLLABORATOR');");
+            migrationBuilder.Sql("CREATE TYPE user_to_task_type AS ENUM ('CREATOR', 'COLLABORATOR');");
             
             migrationBuilder.CreateTable(
                 name: "jobs",
