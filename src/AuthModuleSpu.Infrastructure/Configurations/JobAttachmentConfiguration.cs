@@ -30,7 +30,7 @@ public class JobAttachmentConfiguration : IEntityTypeConfiguration<JobAttachment
             .IsRequired();
 
         builder.Property(entity => entity.Type)
-            .HasColumnName("s3_bucket_name")
+            .HasColumnName("type")
             .HasColumnType("attachment_type")
             .HasConversion(
                 v => v.ToString(),
@@ -44,14 +44,14 @@ public class JobAttachmentConfiguration : IEntityTypeConfiguration<JobAttachment
             .HasDefaultValueSql("now()");
 
         builder
-            .HasIndex(entity => new { entity.Job, entity.S3FileName, entity.S3BucketName })
+            .HasIndex(entity => new { entity.JobId, entity.S3FileName, entity.S3BucketName })
             .IsUnique();
 
         builder.HasKey(entity => entity.Id);
 
         builder.HasOne(entity => entity.Job)
             .WithMany(entity => entity.JobAttachments)
-            .HasForeignKey(entity => entity.Id)
+            .HasForeignKey(entity => entity.JobId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

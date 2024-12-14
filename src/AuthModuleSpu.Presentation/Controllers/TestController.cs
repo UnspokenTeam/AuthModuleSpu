@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AuthModuleSpu.Infrastructure.Contexts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AuthModuleSpu.Presentation.Controllers;
 

@@ -41,11 +41,11 @@ public class JobConfiguration : IEntityTypeConfiguration<Job>
         builder.HasMany(entity => entity.JobPermissions)
             .WithOne(entity => entity.Job)
             .HasForeignKey(entity => entity.JobId);
-
+        
         builder.HasMany(entity => entity.JobAttachments)
             .WithOne(entity => entity.Job)
             .HasForeignKey(entity => entity.JobId);
-
+        
         builder.HasOne(entity => entity.QueueJob)
             .WithOne(entity => entity.Job)
             .HasForeignKey<QueueJob>(entity => entity.JobId);
