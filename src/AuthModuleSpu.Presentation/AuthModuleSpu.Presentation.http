@@ -1,0 +1,6 @@
+@AuthModuleSpu.Presentation_HostAddress = http://localhost:5188
+
+GET {{AuthModuleSpu.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
