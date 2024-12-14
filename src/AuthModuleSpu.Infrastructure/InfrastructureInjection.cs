@@ -1,4 +1,5 @@
-﻿using AuthModuleSpu.Infrastructure.Contexts;
+﻿using AuthModuleSpu.Infrastructure.Repository.Auth;
+using AuthModuleSpu.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,5 +12,6 @@ public static class InfrastructureInjection
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(Environment.GetEnvironmentVariable("ConnectionString")));
+        services.AddTransient<IAuthRepository, AuthRepository>();
     }
 }
