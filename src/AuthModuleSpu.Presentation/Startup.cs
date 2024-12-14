@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using AuthModuleSpu.Application;
 using AuthModuleSpu.Infrastructure;
+using AuthModuleSpu.Infrastructure.Contexts;
 using AuthModuleSpu.Presentation.Configurations;
 using Microsoft.AspNetCore.HttpLogging;
 using Scalar.AspNetCore;
