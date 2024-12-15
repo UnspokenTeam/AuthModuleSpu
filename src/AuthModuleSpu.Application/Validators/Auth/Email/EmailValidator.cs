@@ -6,12 +6,11 @@ namespace AuthModuleSpu.Application.Validators.Auth.Email;
 
 public static class EmailValidator
 {
-    public static bool ValidateEmail<T>(string email, T request)
+    public static void ValidateEmail<T>(string email, T request)
     {
         try
         {
             new MailAddress(email);
-            return true;
         }
         catch (FormatException)
         {

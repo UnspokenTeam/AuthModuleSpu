@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using AuthModuleSpu.Application.Commands.Auth.CreateUser.Contracts;
 using AuthModuleSpu.Application.Commands.Auth.CreateUser.Contracts.Mappers;
-using AuthModuleSpu.Application.Exceptions.Auth.AlreadyExists;
+using AuthModuleSpu.Application.Exceptions.Auth.BadValue;
 using AuthModuleSpu.Application.Validators.Auth.Email;
 
 using AuthModuleSpu.Infrastructure.Repository.Auth;
@@ -23,7 +23,7 @@ public class CreateUserCommandHandler
 
         if (!created)
         {
-            throw new AlreadyExistsException("User with such data already exists", 
+            throw new BadValueException("User with such data already exists", 
                 JsonSerializer.Serialize(request));
         }
         
