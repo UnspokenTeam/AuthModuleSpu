@@ -1,6 +1,7 @@
 using AuthModuleSpu.Application.Commands.Auth.DeleteUser.Contracts;
 using AuthModuleSpu.Application.Commands.Auth.UpdateUser.Contracts;
 using AuthModuleSpu.Application.Query.Auth.GetUserInfo.Contracts;
+using AuthModuleSpu.Application.Commands.Auth.CreateUser.Contracts;
 using Common.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -29,7 +30,7 @@ public class AuthController(IMediator mediator) : ControllerBase
 
         return await mediator.Send(new DeleteUserCommand{ Email = email });
     }
-    
+   
     [HttpPut(nameof(UpdateUser))]
     [Authorize]
     public async Task<UpdateUserCommandResponse> UpdateUser([FromBody] UpdateUserCommandBody updateUserCommandBody)
@@ -38,5 +39,12 @@ public class AuthController(IMediator mediator) : ControllerBase
         
         return await mediator.Send(new UpdateUserCommand {OldEmail = email, Username = updateUserCommandBody.Username,
             Email = updateUserCommandBody.Email});
+    }
+    
+    [HttpPost(nameof(CreateUser))]
+    [Authorize]
+    public async Task<CreateUserCommandResponse> CreateUser([FromBody] CreateUserCommand createUserCommand)
+    {
+        return await mediator.Send(createUserCommand);
     }
 }
