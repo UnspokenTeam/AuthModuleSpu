@@ -1,4 +1,5 @@
 using AuthModuleSpu.Application.Commands.Auth.DeleteUser.Contracts;
+using AuthModuleSpu.Application.Commands.Auth.UpdateUser.Contracts;
 using AuthModuleSpu.Application.Query.Auth.GetUserInfo.Contracts;
 using AuthModuleSpu.Application.Commands.Auth.CreateUser.Contracts;
 using Common.Domain;
@@ -28,6 +29,16 @@ public class AuthController(IMediator mediator) : ControllerBase
         var email = User.FindFirst("email")?.Value!;
 
         return await mediator.Send(new DeleteUserCommand{ Email = email });
+    }
+   
+    [HttpPut(nameof(UpdateUser))]
+    [Authorize]
+    public async Task<UpdateUserCommandResponse> UpdateUser([FromBody] UpdateUserCommandBody updateUserCommandBody)
+    {
+        var email = User.FindFirst("email")?.Value!;
+        
+        return await mediator.Send(new UpdateUserCommand {OldEmail = email, Username = updateUserCommandBody.Username,
+            Email = updateUserCommandBody.Email});
     }
     
     [HttpPost(nameof(CreateUser))]
