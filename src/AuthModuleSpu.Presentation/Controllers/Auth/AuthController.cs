@@ -1,5 +1,6 @@
 using AuthModuleSpu.Application.Commands.Auth.DeleteUser.Contracts;
 using AuthModuleSpu.Application.Query.Auth.GetUserInfo.Contracts;
+using AuthModuleSpu.Application.Commands.Auth.CreateUser.Contracts;
 using Common.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -27,5 +28,12 @@ public class AuthController(IMediator mediator) : ControllerBase
         var email = User.FindFirst("email")?.Value!;
 
         return await mediator.Send(new DeleteUserCommand{ Email = email });
+    }
+    
+    [HttpPost(nameof(CreateUser))]
+    [Authorize]
+    public async Task<CreateUserCommandResponse> CreateUser([FromBody] CreateUserCommand createUserCommand)
+    {
+        return await mediator.Send(createUserCommand);
     }
 }
