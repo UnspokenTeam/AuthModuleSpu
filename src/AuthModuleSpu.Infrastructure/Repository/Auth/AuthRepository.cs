@@ -29,9 +29,10 @@ public class AuthRepository
         var exists = await dbContext.Users.AnyAsync(
             row => row.Email == command.Email || row.Username == command.Username);
         
-        if (!exists)
+        if (!exists) 
         {
-            await dbContext.Users.AddAsync(new User {Username = command.Username, Email = command.Email, CreatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified)});
+            await dbContext.Users.AddAsync(new User {Username = command.Username, Email = command.Email, 
+                CreatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified)});
             await dbContext.SaveChangesAsync();
         }
 
